@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">NMedia</string>
+    <string name="app_likes" translatable="false">123</string>
+    <string name="app_reposts" translatable="false">12K</string>
+    <string name="app_views" translatable="false">1M</string>
+    <string name="post_date" translatable="false">21 мая в 18:36</string>
     <string name="nmedia">NMedia!</string>
     <string name="NetologyName_title" translatable="false"> Нетология - университет интернет-профессий будущего.</string>
     <string name="Netology_profile" translatable="false">

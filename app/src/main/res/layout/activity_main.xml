@@ -9,17 +9,19 @@
 
     <ImageView
         android:id="@+id/avatar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginTop="4dp"
-        android:layout_marginBottom="@android:dimen/dialog_min_width_minor"
-        android:layout_marginStart="6dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginStart="4dp"
         app:layout_constraintBottom_toBottomOf="@id/barrier_upper"
         app:layout_constraintBottom_toTopOf="@id/barrier_upper"
         app:layout_constraintStart_toStartOf= "parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        tools:srcCompat="@sample/posts_avatars" />
+        app:srcCompat="@drawable/avatar_netology"
+
+        />
 
     <TextView
         android:id="@+id/author"
@@ -51,11 +53,11 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        tools:text="@sample/posts.json/data/content"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/avatar"
-        app:layout_constraintTop_toBottomOf="@+id/barrier_upper" />
+        app:layout_constraintTop_toBottomOf="@+id/barrier_upper"
+        android:text="@string/Netology_profile" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier_upper"
@@ -74,6 +76,7 @@
         />
 
     <ImageView
+        android:onClick="countReposts"
         android:id="@+id/repostsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,6 +88,7 @@
         app:srcCompat="?attr/actionModeShareDrawable" />
 
     <ImageView
+
         android:id="@+id/viewsButton"
         android:layout_width="32dp"
         android:layout_height="32dp"
@@ -95,6 +99,7 @@
         app:srcCompat="@android:drawable/ic_menu_view" />
 
     <ImageButton
+
         android:id="@+id/likesButton"
         android:layout_width="32dp"
         android:layout_height="32dp"
@@ -104,19 +109,21 @@
         app:srcCompat="@drawable/ic_baseline_favorite_24" />
 
     <TextView
+
         android:id="@+id/likesNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="@sample/posts.json/data/likes"
+        android:text="@string/app_likes"
         app:layout_constraintBottom_toBottomOf="@+id/likesButton"
         app:layout_constraintStart_toEndOf="@+id/likesButton"
         app:layout_constraintTop_toTopOf="@+id/likesButton" />
 
     <TextView
-        android:id="@+id/textView3"
+
+        android:id="@+id/repostsNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="@sample/posts.json/data/reposts"
+        android:text="0"
         app:layout_constraintBottom_toBottomOf="@+id/repostsButton"
         app:layout_constraintStart_toEndOf="@+id/repostsButton"
         app:layout_constraintTop_toTopOf="@+id/repostsButton"
@@ -131,7 +138,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/viewsButton"
         app:layout_constraintTop_toTopOf="@+id/viewsButton"
-        tools:text="@sample/posts.json/data/views" />
+        android:text="@string/app_views" />
 
     <TextView
         android:id="@+id/dateOfPost"
@@ -140,7 +147,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/avatar"
         app:layout_constraintStart_toStartOf="@+id/author"
         app:layout_constraintTop_toBottomOf="@+id/author"
-        tools:text="@sample/posts.json/data/published" />
+        android:text="@string/post_date" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
