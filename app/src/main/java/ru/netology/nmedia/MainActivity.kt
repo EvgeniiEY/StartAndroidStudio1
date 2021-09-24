@@ -13,38 +13,54 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.text.DecimalFormat
 
 
-
 class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         var likeStatus = 0
+        val countStringLikes = likesNumber.text.toString()
+
+        var counterL: Int = Integer.parseInt(countStringLikes)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         likesButton.setOnClickListener {
-            if (likeStatus == 1) {
-                likesButton.setImageResource(R.drawable.ic_baseline_favorite_24)
-                likeStatus = 0
-                val countStringLikes = likesNumber.text.toString()
-                var counterL: Int = Integer.parseInt(countStringLikes)
-                counterL--
-                if(counterL <= 1000) {
-                    likesNumber.text = counterL.toString()
-                } else {likesNumber.text = "1K"}
 
-            } else {
+
+            if (likeStatus == 0) {
                 likesButton.setImageResource(R.drawable.ic_liked_24)
                 likeStatus = 1
-                val countStringLikes = likesNumber.text.toString()
-                var counterL: Int = Integer.parseInt(countStringLikes)
+//                val countStringLikes = likesNumber.text.toString()
+//                var counterL: Int = Integer.parseInt(countStringLikes)
                 counterL++
-                likesNumber.text = counterL.toString()
+                if (counterL < 1000) {
+                    likesNumber.text = counterL.toString()
 
+
+                } else {
+//                    counterL.toString()
+                    likesNumber.text = "1K"
+                }
+
+            } else {
+                if (likeStatus == 1) {
+                    likesButton.setImageResource(R.drawable.ic_baseline_favorite_24)
+                    likeStatus = 0
+//                    val countStringLikes = likesNumber.text.toString()
+//                    var counterL: Int = Integer.parseInt(countStringLikes)
+                    counterL--
+                    likesNumber.text = counterL.toString()
+                    if (counterL < 1000) {
+                        likesNumber.text = counterL.toString()
+                    } else {
+                        likesNumber.text = "1K"
+                    }
+                }
             }
+
+
         }
     }
-
 
     fun countReposts(view: View) {
         val countStringReposts = repostsNumber.text.toString()
@@ -53,8 +69,6 @@ class MainActivity : AppCompatActivity() {
         repostsNumber.text = counterR.toString()
     }
 }
-
-
 
 
 //@Nullable
