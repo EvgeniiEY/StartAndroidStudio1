@@ -8,6 +8,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import ru.netology.nmedia.databinding.ActivityMainBinding
 
 
 import java.text.DecimalFormat
@@ -17,13 +18,14 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
         var likeStatus = 0
         val countStringLikes = likesNumber.text.toString()
-
         var counterL: Int = Integer.parseInt(countStringLikes)
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
         likesButton.setOnClickListener {
 
 
