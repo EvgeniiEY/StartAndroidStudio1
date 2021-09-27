@@ -7,7 +7,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
+
 import ru.netology.nmedia.databinding.ActivityMainBinding
 
 
@@ -21,57 +21,57 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         var likeStatus = 0
-        val countStringLikes = likesNumber.text.toString()
+        val countStringLikes = binding.likesNumber.text.toString()
         var counterL: Int = Integer.parseInt(countStringLikes)
 
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        likesButton.setOnClickListener {
+        binding.likesButton.setOnClickListener {
 
 
             if (likeStatus == 0) {
-                likesButton.setImageResource(R.drawable.ic_liked_24)
+                binding.likesButton.setImageResource(R.drawable.ic_liked_24)
                 likeStatus = 1
 //                val countStringLikes = likesNumber.text.toString()
 //                var counterL: Int = Integer.parseInt(countStringLikes)
                 counterL++
                 if (counterL < 1000) {
-                    likesNumber.text = counterL.toString()
+                    binding.likesNumber.text = counterL.toString()
 
 
                 } else {
 //                    counterL.toString()
-                    likesNumber.text = "1K"
+                    binding.likesNumber.text = "1K"
                 }
 
             } else {
                 if (likeStatus == 1) {
-                    likesButton.setImageResource(R.drawable.ic_baseline_favorite_24)
+                    binding.likesButton.setImageResource(R.drawable.ic_baseline_favorite_24)
                     likeStatus = 0
 //                    val countStringLikes = likesNumber.text.toString()
 //                    var counterL: Int = Integer.parseInt(countStringLikes)
                     counterL--
-                    likesNumber.text = counterL.toString()
+                    binding.likesNumber.text = counterL.toString()
                     if (counterL < 1000) {
-                        likesNumber.text = counterL.toString()
+                        binding.likesNumber.text = counterL.toString()
                     } else {
-                        likesNumber.text = "1K"
+                        binding.likesNumber.text = "1K"
                     }
                 }
             }
 
 
         }
-    }
 
-    fun countReposts(view: View) {
-        val countStringReposts = repostsNumber.text.toString()
-        var counterR: Int = Integer.parseInt(countStringReposts)
-        counterR++
-        repostsNumber.text = counterR.toString()
+
+        fun countReposts(view: View) {
+            val countStringReposts = binding.repostsNumber.text.toString()
+            var counterR: Int = Integer.parseInt(countStringReposts)
+            counterR++
+            binding.repostsNumber.text = counterR.toString()
+        }
     }
 }
-
 
 //@Nullable
 //public final <T extends View> T findViewById(@
