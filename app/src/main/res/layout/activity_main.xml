@@ -76,7 +76,7 @@
         />
 
     <ImageView
-        android:onClick="countReposts"
+
         android:id="@+id/repostsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

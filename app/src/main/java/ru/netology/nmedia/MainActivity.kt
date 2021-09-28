@@ -23,8 +23,6 @@ class MainActivity : AppCompatActivity() {
         var likeStatus = 0
         val countStringLikes = binding.likesNumber.text.toString()
         var counterL: Int = Integer.parseInt(countStringLikes)
-
-        super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.likesButton.setOnClickListener {
 
@@ -32,17 +30,14 @@ class MainActivity : AppCompatActivity() {
             if (likeStatus == 0) {
                 binding.likesButton.setImageResource(R.drawable.ic_liked_24)
                 likeStatus = 1
-//                val countStringLikes = likesNumber.text.toString()
-//                var counterL: Int = Integer.parseInt(countStringLikes)
                 counterL++
                 if (counterL < 1000) {
                     binding.likesNumber.text = counterL.toString()
 
 
-                } else {
-//                    counterL.toString()
+                } else if(counterL in 1000..1099){
                     binding.likesNumber.text = "1K"
-                }
+
 
             } else {
                 if (likeStatus == 1) {
@@ -59,19 +54,23 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-
-
         }
 
+        binding.repostsButton.setOnClickListener {
 
-        fun countReposts(view: View) {
-            val countStringReposts = binding.repostsNumber.text.toString()
-            var counterR: Int = Integer.parseInt(countStringReposts)
-            counterR++
-            binding.repostsNumber.text = counterR.toString()
+
+
+                val countStringReposts = binding.repostsNumber.text.toString()
+                var counterR: Int = Integer.parseInt(countStringReposts)
+                counterR++
+                binding.repostsNumber.text = counterR.toString()
+
+
         }
     }
 }
+
+//android:onClick= "countReposts"
 
 //@Nullable
 //public final <T extends View> T findViewById(@
