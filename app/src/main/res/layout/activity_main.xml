@@ -113,7 +113,7 @@
         android:id="@+id/likesNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_likes"
+        android:text="@string/app_likes_input"
         app:layout_constraintBottom_toBottomOf="@+id/likesButton"
         app:layout_constraintStart_toEndOf="@+id/likesButton"
         app:layout_constraintTop_toTopOf="@+id/likesButton" />
@@ -123,7 +123,7 @@
         android:id="@+id/repostsNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0"
+        android:text="@string/app_reposts"
         app:layout_constraintBottom_toBottomOf="@+id/repostsButton"
         app:layout_constraintStart_toEndOf="@+id/repostsButton"
         app:layout_constraintTop_toTopOf="@+id/repostsButton"
