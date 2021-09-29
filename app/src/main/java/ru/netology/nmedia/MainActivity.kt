@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 import ru.netology.nmedia.databinding.ActivityMainBinding
+import java.math.RoundingMode
 
 
 import java.text.DecimalFormat
@@ -28,16 +29,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.likesButton.setOnClickListener {
 
-
+        // ВЕТКА ВЫГРУЖЕНА
             if (likeStatus == 0) {
                 binding.likesButton.setImageResource(R.drawable.ic_liked_24)
                 likeStatus = 1
                 counterL++
 
                 if (Math.abs(counterL / 1_000) >= 1) {
-//                    val doubleRaw =
-                    binding.likesNumber.text = getString(R.string.app_likes, (counterL / 1_000).toString(), "k")
-
+                    val counterLrounded = (counterL/1000).toBigDecimal().setScale(1, RoundingMode.FLOOR).toDouble()
+                    binding.likesNumber.text = getString(R.string.app_likes, (counterLrounded).toString(), "k")
 
                 } else if (Math.abs(counterL / 1_000_000) >= 1) {
                     binding.likesNumber.text = getString(R.string.app_likes, (counterL / 1_000_000).toString(), "m")
