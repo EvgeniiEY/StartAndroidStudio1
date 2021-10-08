@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@id/barrier_upper"
+        app:layout_constraintBottom_toTopOf="@id/barrier_upper"
+        app:layout_constraintStart_toStartOf= "parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:srcCompat="@drawable/avatar_netology"
+
+        />
+
+    <TextView
+        android:id="@+id/author"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:text="@string/NetologyName_title"
+        app:layout_constraintBottom_toBottomOf="@+id/avatar"
+        app:layout_constraintEnd_toStartOf="@+id/threeDotButton"
+        app:layout_constraintStart_toEndOf="@+id/avatar"
+        app:layout_constraintTop_toTopOf="@+id/avatar"
+        tools:ignore="UnknownId" />
+
+    <ImageButton
+        android:id="@+id/threeDotButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/author"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/author"
+        app:srcCompat="@drawable/ic_baseline_more_vert_24"
+        android:background="@android:color/transparent"/>
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/avatar"
+        app:layout_constraintTop_toBottomOf="@+id/barrier_upper"
+        android:text="@string/Netology_profile" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_upper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="dateOfPost, author,threeDotButton"
+        />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="avatar, author,threeDotButton,content"
+        />
+
+    <ImageView
+
+        android:id="@+id/repostsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/likesNumber"
+        app:layout_constraintStart_toEndOf="@+id/likesNumber"
+        app:layout_constraintTop_toBottomOf="@+id/barrier_down"
+        app:srcCompat="?attr/actionModeShareDrawable" />
+
+    <ImageView
+
+        android:id="@+id/viewsButton"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="72dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barrier_down"
+        app:srcCompat="@android:drawable/ic_menu_view" />
+
+    <ImageButton
+
+        android:id="@+id/likesButton"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barrier_down"
+        app:srcCompat="@drawable/ic_baseline_favorite_24" />
+
+    <TextView
+
+        android:id="@+id/likesNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_likes_input"
+        app:layout_constraintBottom_toBottomOf="@+id/likesButton"
+        app:layout_constraintStart_toEndOf="@+id/likesButton"
+        app:layout_constraintTop_toTopOf="@+id/likesButton" />
+
+    <TextView
+
+        android:id="@+id/repostsNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_reposts"
+        app:layout_constraintBottom_toBottomOf="@+id/repostsButton"
+        app:layout_constraintStart_toEndOf="@+id/repostsButton"
+        app:layout_constraintTop_toTopOf="@+id/repostsButton"
+         />
+
+    <TextView
+        android:id="@+id/viewsNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewsButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/viewsButton"
+        app:layout_constraintTop_toTopOf="@+id/viewsButton"
+        android:text="@string/app_views" />
+
+    <TextView
+        android:id="@+id/dateOfPost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/avatar"
+        app:layout_constraintStart_toStartOf="@+id/author"
+        app:layout_constraintTop_toBottomOf="@+id/author"
+        android:text="@string/post_date" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
