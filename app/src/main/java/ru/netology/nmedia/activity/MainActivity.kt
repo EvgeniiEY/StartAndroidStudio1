@@ -3,9 +3,11 @@ package ru.netology.nmedia.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelStore
+import kotlinx.android.synthetic.main.activity_main.*
 import ru.netology.nmedia.R
 
 import ru.netology.nmedia.databinding.ActivityMainBinding
@@ -22,21 +24,21 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val viewModel: PostViewModel
+        val viewModel: PostViewModel by viewModels()
         viewModel.data.observe(this) { post ->
             with(binding) {
 
-                id.value = post.id
-//                author.text = post.author
-//                authorAvatar.text = post.authorAvatar
-//                content.text = post.content
-//                published.text = post.published
-//                likedByMe.text = post.likedByMe
-//                likes.text = post.likes
-//                share.text = post.share
-//                views.text = post.views
-//                video.text = post.video
-
+                id.text = post.id
+                author.text = post.author
+                authorAvatar.text = post.authorAvatar
+                content.text = post.content
+                published.text = post.published
+                likedByMe.text = post.likedByMe
+                likes.text = post.likes
+                share.text = post.share
+                views.text = post.views
+                video.text = post.video
+            }
                 likesButton.setImageResourse(
                     if (post.likedByMe) R.drawable.ic_liked_24 else R.drawable.ic_baseline_favorite_24
                 )
@@ -114,5 +116,5 @@ class MainActivity : AppCompatActivity() {
         }
         return formatCount
     }
-}
+
 
