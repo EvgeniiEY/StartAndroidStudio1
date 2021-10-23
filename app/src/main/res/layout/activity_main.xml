@@ -64,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="dateOfPost, author,threeDotButton"
+        app:constraint_referenced_ids="published, author,threeDotButton"
         />
 
     <androidx.constraintlayout.widget.Barrier
@@ -141,7 +141,7 @@
         android:text="@string/app_views" />
 
     <TextView
-        android:id="@+id/dateOfPost"
+        android:id="@+id/published"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/avatar"

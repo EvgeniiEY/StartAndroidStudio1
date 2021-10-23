@@ -1,12 +1,10 @@
 package ru.netology.nmedia.activity
 
-
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.netology.nmedia.R
-
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.viewModel.PostViewModel
 import androidx.activity.viewModels
@@ -26,24 +24,35 @@ class MainActivity : AppCompatActivity() {
         viewModel.data.observe(this) { post ->
             with(binding) {
 
-                id.text = post.id
+
                 author.text = post.author
-                authorAvatar.text = post.authorAvatar
                 content.text = post.content
                 published.text = post.published
-                likedByMe.text = post.likedByMe
-                likes.text = post.likes
-                share.text = post.share
-                views.text = post.views
-                video.text = post.video
+                likesNumber.text = post.likes.toString()
+                repostsNumber.text = post.share.toString()
+
             }
-            likesButton.setImageResourse(
-                if (post.likedByMe) R.drawable.ic_liked_24 else R.drawable.ic_baseline_favorite_24
-            )
+
+            if (post.likedByMe) {
+                likesButton?.setImageResource(R.drawable.ic_baseline_favorite_24)
+            }
 
 
-            binding.likesButton.setOnClickListener {
-                viewModel.likes()
+            likesButton?.setOnClickListener {
+                post.likedByMe = !post.likedByMe
+                likesButton.setImageResource(
+                    if (post.likedByMe) R.drawable.ic_liked_24
+                    else R.drawable.ic_baseline_favorite_24
+                )
+
+                val counter = post.likes + 1
+                if (post.likedByMe) likesNumber.text = reductionInNumbers(counter)
+                else likesNumber.text = reductionInNumbers(post.likes)
+            }
+
+            repostsButton.setOnClickListener {
+                val counter = post.share + 1
+                repostsNumber.text = reductionInNumbers(counter)
             }
         }
     }
@@ -95,24 +104,24 @@ class MainActivity : AppCompatActivity() {
 //сработал клик на кнопке лайк
 
 
-//        fun reductionInNumbers(count: Int): String {
-//            val formatCount = when {
-//                count in 1000..9999 -> {
-//                    String.format("%.1fK", count / 1000.0)
-//                }
-//                count in 10000..999999 -> {
-//                    String.format("%dK", count / 1000)
-//                }
-//                count > 1000000 -> {
-//                    String.format("%.1fM", count / 1000000.0)
-//                }
-//
-//                else -> {
-//                    count.toString()
-//                }
-//            }
-//            return formatCount
-//        }
+fun reductionInNumbers(count: Int): String {
+    val formatCount = when {
+        count in 1000..9999 -> {
+            String.format("%.1fK", count / 1000.0)
+        }
+        count in 10000..999999 -> {
+            String.format("%dK", count / 1000)
+        }
+        count > 1000000 -> {
+            String.format("%.1fM", count / 1000000.0)
+        }
+
+        else -> {
+            count.toString()
+        }
+    }
+    return formatCount
+}
 //    }
 
 
