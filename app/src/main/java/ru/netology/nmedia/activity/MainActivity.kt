@@ -1,9 +1,7 @@
 package ru.netology.nmedia.activity
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.viewModel.PostViewModel
@@ -12,8 +10,6 @@ import androidx.activity.viewModels
 
 class MainActivity : AppCompatActivity() {
 
-
-    @SuppressLint("StringFormatInvalid")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,32 +27,27 @@ class MainActivity : AppCompatActivity() {
                 likesNumber.text = post.likes.toString()
                 repostsNumber.text = post.share.toString()
 
-            }
-
-            if (post.likedByMe) {
-                likesButton?.setImageResource(R.drawable.ic_baseline_favorite_24)
-            }
-
-
-            likesButton?.setOnClickListener {
-                post.likedByMe = !post.likedByMe
                 likesButton.setImageResource(
                     if (post.likedByMe) R.drawable.ic_liked_24
                     else R.drawable.ic_baseline_favorite_24
+
                 )
-
-                val counter = post.likes + 1
-                if (post.likedByMe) likesNumber.text = reductionInNumbers(counter)
-                else likesNumber.text = reductionInNumbers(post.likes)
+                likesNumber.text = reductionInNumbers(post.likes)
+                repostsNumber.text = reductionInNumbers(post.share)
             }
+        }
 
-            repostsButton.setOnClickListener {
-                val counter = post.share + 1
-                repostsNumber.text = reductionInNumbers(counter)
-            }
+
+        binding.likesButton.setOnClickListener {
+            viewModel.like()
+        }
+
+        binding.repostsButton.setOnClickListener {
+            viewModel.share()
         }
     }
 }
+
 
 //        var likeStatus = 0
 //        val countStringLikes = binding.likesNumber.text.toString()
@@ -122,6 +113,6 @@ fun reductionInNumbers(count: Int): String {
     }
     return formatCount
 }
-//    }
+
 
 

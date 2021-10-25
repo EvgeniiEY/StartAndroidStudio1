@@ -6,7 +6,7 @@ data class Post (
     val authorAvatar: String ?,
     val content: String,
     val published: String,
-    var likedByMe: Boolean,
+    val likedByMe: Boolean,
     val likes: Int,
     val share: Int,
     val views: Int,
