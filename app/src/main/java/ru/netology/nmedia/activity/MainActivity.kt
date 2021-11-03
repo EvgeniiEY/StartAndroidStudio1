@@ -3,9 +3,15 @@ package ru.netology.nmedia.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.R
-import ru.netology.nmedia.databinding.ActivityMainBinding
+
 import ru.netology.nmedia.viewModel.PostViewModel
 import androidx.activity.viewModels
+import ru.netology.nmedia.adapter.PostCallBack
+import ru.netology.nmedia.adapter.PostsAdapter
+import ru.netology.nmedia.databinding.ActivityMainBinding
+import ru.netology.nmedia.databinding.CardPostBinding
+import ru.netology.nmedia.dto.Post
+import ru.netology.nmedia.utils.Utils
 
 
 class MainActivity : AppCompatActivity() {
@@ -17,55 +23,24 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel: PostViewModel by viewModels()
-        viewModel.data.observe(this) { post ->
-            with(binding) {
 
-
-                author.text = post.author
-                content.text = post.content
-                published.text = post.published
-                likesNumber.text = post.likes.toString()
-                repostsNumber.text = post.share.toString()
-
-                likesButton.setImageResource(
-                    if (post.likedByMe) R.drawable.ic_liked_24
-                    else R.drawable.ic_baseline_favorite_24
-
-                )
-                likesNumber.text = reductionInNumbers(post.likes)
-                repostsNumber.text = reductionInNumbers(post.share)
+        val adapter = PostsAdapter (object : PostCallBack {
+            override fun onLike(post: Post) {
+                viewModel.likeById(post.id)
             }
-        }
 
+            override fun onShare(post: Post) {
+                viewModel.shareById(post.id)
+            }
 
-        binding.likesButton.setOnClickListener {
-            viewModel.like()
-        }
+        })
+        binding.mainList.adapter = adapter
+        binding.mainList.itemAnimator = null
 
-        binding.repostsButton.setOnClickListener {
-            viewModel.share()
+        viewModel.data.observe(this) { posts ->
+            adapter.submitList(posts)
         }
     }
-}
-
-
-fun reductionInNumbers(count: Int): String {
-    val formatCount = when {
-        count in 1000..9999 -> {
-            String.format("%.1fK", count / 1000.0)
-        }
-        count in 10000..999999 -> {
-            String.format("%dK", count / 1000)
-        }
-        count > 1000000 -> {
-            String.format("%.1fM", count / 1000000.0)
-        }
-
-        else -> {
-            count.toString()
-        }
-    }
-    return formatCount
 }
 
 
