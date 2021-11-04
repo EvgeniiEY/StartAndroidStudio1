@@ -13,7 +13,8 @@ import ru.netology.nmedia.utils.Utils
 
 interface PostCallBack {
     fun onLike(post: Post)
-    fun onUnLike(post: Post)
+
+    //    fun onUnLike(post: Post)
     fun onShare(post: Post)
 }
 

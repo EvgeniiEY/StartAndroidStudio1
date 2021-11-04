@@ -24,15 +24,10 @@ class MainActivity : AppCompatActivity() {
 
         val viewModel: PostViewModel by viewModels()
 
-        val adapter = PostsAdapter (object : PostCallBack {
+        val adapter = PostsAdapter(object : PostCallBack {
             override fun onLike(post: Post) {
                 viewModel.likeById(post.id)
             }
-
-            override fun onUnLike(post: Post) {
-                viewModel.unlikeById(post.id)
-            }
-
 
             override fun onShare(post: Post) {
                 viewModel.shareById(post.id)
