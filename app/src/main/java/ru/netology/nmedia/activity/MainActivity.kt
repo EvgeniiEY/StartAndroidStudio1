@@ -29,6 +29,11 @@ class MainActivity : AppCompatActivity() {
                 viewModel.likeById(post.id)
             }
 
+            override fun onUnLike(post: Post) {
+                viewModel.unlikeById(post.id)
+            }
+
+
             override fun onShare(post: Post) {
                 viewModel.shareById(post.id)
             }
