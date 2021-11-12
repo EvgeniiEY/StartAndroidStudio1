@@ -2,6 +2,7 @@ package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -13,9 +14,9 @@ import ru.netology.nmedia.utils.Utils
 
 interface PostCallBack {
     fun onLike(post: Post)
-
-    //    fun onUnLike(post: Post)
     fun onShare(post: Post)
+    fun remove(post: Post)
+    fun edit(post: Post)
 }
 
 
@@ -52,12 +53,32 @@ class PostViewHolder(
             )
             likesNumber.text = Utils.reductionInNumbers(post.likes)
             repostsNumber.text = Utils.reductionInNumbers(post.share)
+
             likesButton.setOnClickListener {
                 postCallBack.onLike(post)
             }
             repostsButton.setOnClickListener {
                 postCallBack.onShare(post)
             }
+            threeDotButton.setOnClickListener {
+                PopupMenu(it.context, it).apply {
+                    inflate(R.menu.post_options)
+                    setOnMenuItemClickListener { menuItem ->
+                        when (menuItem.itemId) {
+                            R.id.post_remove -> {
+                                postCallBack.remove(post)
+                                true
+                            }
+                            R.id.post_edit -> {
+                                postCallBack.edit(post)
+                                true
+                            }
+                            else -> false
+                        }
+                    }
+                }.show()
+            }
+
         }
     }
 }

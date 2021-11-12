@@ -2,12 +2,16 @@
     <string name="app_name">NMedia</string>
     <string name="app_likes_input" translatable="false">10999</string>
     <string name="app_likes" translatable="false">"%1$s%2$s"</string>
-
+    <string name="menu_remove" translatable="true">Remove</string>
+    <string name="menu_edit">Edit</string>
+    <string name="post_text">Enter post text</string>
+    <string name="description_post_like">Like</string>
+    <string name="error_empty_content">Content cannot be empty</string>
     <string name="app_reposts" translatable="false">1200</string>
     <string name="app_views" translatable="false">1M</string>
-    <string name="post_date" translatable="false">21 мая в 18:36</string>
+    <string name="post_date" translatable="true">21 May в 18:36</string>
     <string name="nmedia">NMedia!</string>
-    <string name="NetologyName_title" translatable="false"> Нетология - университет интернет-профессий будущего.</string>
+    <string name="NetologyName_title">Netology is the University of Internet professions of the future.</string>
     <string name="Netology_profile" translatable="false">
 Привет, это Нетология.
 Мы начинали с курсов об онлайн-маркетинге

@@ -6,9 +6,10 @@ import ru.netology.nmedia.dto.Post
 
 
 class PostRepositoryInMemoryImpl : PostRepository {
+    private var nextId = 1L
     private var posts = listOf(
         Post(
-            id = 1,
+            id = nextId++,
             author = "Нетология - университет интернет-профессий будущего.",
             authorAvatar = "Avatar",
             content = "Привет, это Нетология. Мы начинали с курсов об онлайн-маркетинге. Затем выросли в университет интернет-профессий: учили дизайнеров, аналитиков, программистов, менеджеров, маркетологов… Но обучать новым профессиям — это не предел. Мы продолжаем расти. Сегодня мы даём знания не только начинающим, но и тем, кто давно в профессии. Специалисты изучают новые инструменты, топ-менеджеры — получают степень MBA, руководители бизнеса — обучают своих сотрудников и обучаются сами. Нетология помогает расти на всех этапах карьеры — получать знания на старте и открывать новые высоты.",
@@ -20,7 +21,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
             video = "VHS"
         ),
         Post(
-            id = 2,
+            id = nextId++,
             author = "Нетология - университет интернет-профессий будущего.",
             authorAvatar = "Avatar",
             content = "ПОСТ №2 Привет, это Нетология. Мы начинали с курсов об онлайн-маркетинге. Затем выросли в университет интернет-профессий: учили дизайнеров, аналитиков, программистов, менеджеров, маркетологов… Но обучать новым профессиям — это не предел. Мы продолжаем расти. Сегодня мы даём знания не только начинающим, но и тем, кто давно в профессии. Специалисты изучают новые инструменты, топ-менеджеры — получают степень MBA, руководители бизнеса — обучают своих сотрудников и обучаются сами. Нетология помогает расти на всех этапах карьеры — получать знания на старте и открывать новые высоты.",
@@ -31,7 +32,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
             views = 6666,
             video = "VHS_2"
         ),
-    )
+    ).reversed()
 
     private val data = MutableLiveData(posts)
 
@@ -55,7 +56,25 @@ class PostRepositoryInMemoryImpl : PostRepository {
         data.value = posts
     }
 
+    override fun removeById(id: Long) {
+        posts = posts.filter { it.id != id }
+        data.value = posts
+    }
 
+    override fun save(post: Post) {
+        posts = if (post.id == 0L) {
+            listOf(post.copy(id = nextId++)) + posts
+        } else {
+            posts.map { if (it.id != post.id) it else it.copy(content = post.content) }
+        }
+        data.value = posts
+
+    }
+
+    override fun edit(post: Post) {
+        TODO("Not yet implemented")
+    }
 }
+
 
 
