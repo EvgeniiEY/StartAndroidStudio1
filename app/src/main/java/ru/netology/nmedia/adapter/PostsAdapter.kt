@@ -1,6 +1,7 @@
 package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
@@ -10,6 +11,7 @@ import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.utils.Utils
+import java.security.acl.Group
 
 
 interface PostCallBack {
@@ -63,21 +65,27 @@ class PostViewHolder(
             threeDotButton.setOnClickListener {
                 PopupMenu(it.context, it).apply {
                     inflate(R.menu.post_options)
+
                     setOnMenuItemClickListener { menuItem ->
                         when (menuItem.itemId) {
                             R.id.post_remove -> {
                                 postCallBack.remove(post)
                                 true
+
+
                             }
                             R.id.post_edit -> {
                                 postCallBack.edit(post)
                                 true
+
+
                             }
                             else -> false
                         }
                     }
                 }.show()
             }
+
 
         }
     }

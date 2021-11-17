@@ -1,6 +1,7 @@
 package ru.netology.nmedia.activity
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.R
@@ -13,7 +14,7 @@ import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.utils.Utils
-
+import java.security.acl.Group
 
 
 class MainActivity : AppCompatActivity() {
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun edit(post: Post) {
                 viewModel.edit(post)
+
             }
 
         })
@@ -52,18 +54,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.edited.observe(this) { post ->
-            if(post.id == 0L) {
+            if (post.id == 0L) {
                 return@observe
             }
-            binding.content.setText(post.content)
-            binding.content.requestFocus()
+            binding.contentEditor.setText(post.content)
+            binding.contentEditor.requestFocus()
         }
 
-        binding.save.setOnClickListener {
-            with(binding.content) {
-                if(text.isNullOrBlank()) {
-                Toast.makeText(this@MainActivity, R.string.error_empty_content, Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+        binding.saveButton.setOnClickListener {
+            with(binding.contentEditor) {
+                if (text.isNullOrBlank()) {
+                    Toast.makeText(
+                        this@MainActivity,
+                        R.string.error_empty_content,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    return@setOnClickListener
                 }
 
                 viewModel.changeContent(text.toString())
@@ -74,7 +80,18 @@ class MainActivity : AppCompatActivity() {
                 Utils.hideKeyboard(it)
             }
         }
-    }
+//        binding.post.
+//
+//        R.id.post_edit -> {
+
+        }
+
+//        binding.editMessage.setOnClickListener {
+//            binding.group.visibility = View.INVISIBLE
+//            binding.group.visibility = View.GONE
+//        }
+
+
 }
 
 
