@@ -8,6 +8,7 @@ import ru.netology.nmedia.R
 
 import ru.netology.nmedia.viewModel.PostViewModel
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import ru.netology.nmedia.adapter.PostCallBack
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
@@ -57,9 +58,19 @@ class MainActivity : AppCompatActivity() {
             if (post.id == 0L) {
                 return@observe
             }
+            binding.group.isVisible = true
             binding.contentEditor.setText(post.content)
             binding.contentEditor.requestFocus()
         }
+        binding.cancelEditButton.setOnClickListener {
+            binding.group.visibility = View.INVISIBLE
+            binding.contentEditor.setText("")
+            binding.contentEditor.requestFocus()
+
+            Utils.hideKeyboard(it)
+        }
+
+
 
         binding.saveButton.setOnClickListener {
             with(binding.contentEditor) {
@@ -80,18 +91,7 @@ class MainActivity : AppCompatActivity() {
                 Utils.hideKeyboard(it)
             }
         }
-//        binding.post.
-//
-//        R.id.post_edit -> {
-
-        }
-
-//        binding.editMessage.setOnClickListener {
-//            binding.group.visibility = View.INVISIBLE
-//            binding.group.visibility = View.GONE
-//        }
-
-
+    }
 }
 
 

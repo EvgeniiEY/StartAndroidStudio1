@@ -70,6 +70,7 @@ class PostViewHolder(
                         when (menuItem.itemId) {
                             R.id.post_remove -> {
                                 postCallBack.remove(post)
+
                                 true
 
 
