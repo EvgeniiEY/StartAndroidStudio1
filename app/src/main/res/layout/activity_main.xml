@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -24,7 +23,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="top"
-        app:constraint_referenced_ids="contentEditor, saveButton" />
+        app:constraint_referenced_ids="contentEditor, saveButton"
+        tools:layout_editor_absoluteY="675dp" />
+
 
     <EditText
         android:id="@+id/contentEditor"
@@ -41,24 +42,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolsTop"
         app:layout_constraintVertical_bias="0.0" />
-
-
-    <EditText
-        android:id="@+id/editMessage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:importantForAutofill="no"
-        android:inputType="textMultiLine"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:maxLines="2"
-        android:padding="@dimen/common_spacing"
-        app:layout_constraintBottom_toTopOf="@+id/contentEditor"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolsTop"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/ic_baseline_cancel" />
 
     <ImageButton
         android:id="@+id/saveButton"
@@ -77,6 +60,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="627dp"
+        android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@+id/main_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/main_list"
@@ -84,8 +68,11 @@
 
     <ImageView
         android:id="@+id/editCancelImage"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="49dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@+id/main_list"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_edit" />
@@ -95,7 +82,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible"
-        app:constraint_referenced_ids="cancelEditButton, editCancelImage, editMessage"/>
+        app:constraint_referenced_ids="editCancelImage, editedTextPart, cancelEditButton" />
+
+    <TextView
+        android:id="@+id/editedTextPart"
+        android:layout_width="291dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="4dp"
+        android:background="@android:color/white"
+        android:ellipsize="end"
+        android:hint="@string/post_text"
+        android:maxLines="1"
+        app:layout_constraintBottom_toTopOf="@+id/contentEditor"
+        app:layout_constraintEnd_toStartOf="@+id/cancelEditButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/editCancelImage" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

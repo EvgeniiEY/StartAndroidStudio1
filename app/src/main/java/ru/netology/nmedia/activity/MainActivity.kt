@@ -60,12 +60,14 @@ class MainActivity : AppCompatActivity() {
             }
             binding.group.isVisible = true
             binding.contentEditor.setText(post.content)
+            binding.editedTextPart.text = post.content
+
             binding.contentEditor.requestFocus()
         }
         binding.cancelEditButton.setOnClickListener {
             binding.group.visibility = View.INVISIBLE
             binding.contentEditor.setText("")
-            binding.contentEditor.requestFocus()
+
 
             Utils.hideKeyboard(it)
         }
@@ -85,7 +87,7 @@ class MainActivity : AppCompatActivity() {
 
                 viewModel.changeContent(text.toString())
                 viewModel.save()
-
+                binding.group.visibility = View.INVISIBLE
                 setText("")
                 clearFocus()
                 Utils.hideKeyboard(it)
