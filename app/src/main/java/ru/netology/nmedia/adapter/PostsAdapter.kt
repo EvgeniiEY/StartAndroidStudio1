@@ -1,7 +1,6 @@
 package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
@@ -11,7 +10,6 @@ import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.utils.Utils
-import java.security.acl.Group
 
 
 interface PostCallBack {
@@ -48,11 +46,7 @@ class PostViewHolder(
             published.text = post.published
             likesNumber.text = post.likes.toString()
             repostsNumber.text = post.share.toString()
-            likesButton.setImageResource(
-                if (post.likedByMe) R.drawable.ic_liked_24
-                else R.drawable.ic_baseline_favorite_24
-
-            )
+            likesButton.isChecked = post.likedByMe
             likesNumber.text = Utils.reductionInNumbers(post.likes)
             repostsNumber.text = Utils.reductionInNumbers(post.share)
 
