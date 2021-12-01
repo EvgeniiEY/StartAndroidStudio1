@@ -100,18 +100,21 @@
         app:layout_constraintTop_toBottomOf="@+id/barrier_down"
         app:srcCompat="@android:drawable/ic_menu_view" />
 
-    <com.google.android.material.checkbox.MaterialCheckBox
+    <com.google.android.material.button.MaterialButton
 
         android:id="@id/likesButton"
-        style="@style/AppTheme.Like"
+        style="@style/MyStyleMaterialButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:button="@drawable/ic_liked_24dp"
         android:layout_marginStart="8dp"
-        android:checked="true"
+        android:layout_marginTop="@dimen/min_margin"
+        android:background="@android:color/transparent"
+        android:checkable="true"
+        android:drawableStart="@drawable/ic_liked_24"
+        app:icon="@drawable/ic_liked_24dp"
+        app:iconTint="@color/Grey"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/barrier_down"
-        app:srcCompat="@drawable/ic_baseline_favorite_24" />
+        app:layout_constraintTop_toBottomOf="@+id/barrier_down" />
 
     <TextView
 

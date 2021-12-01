@@ -6,7 +6,27 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.Like" parent="Widget.MaterialComponents.CompoundButton.CheckBox" >
+    <style name="AppTheme.Like"
+        parent="Widget.MaterialComponents.CompoundButton.CheckBox" >
         <item name = "buttonTint">@color/like_checkbox_tint</item>
     </style>
+
+    <style name="Widget.AppTheme.LikeCheckBox"
+            parent = "Widget.MaterialComponents.Button.TextButton.Icon">
+        <item name="iconTint">@color/like_checkbox_tint</item>
+        <item name="android:minWidth">@dimen/icon_button_min_size</item>
+        <item name= "android:minHeight">@dimen/icon_button_min_size</item>
+    </style>
+
+    <style name="MyStyleMaterialButton"
+        parent = "Widget.MaterialComponents.Button.TextButton.Icon">
+        <item name="colorPrimary">@color/Grey</item>
+        <item name="colorSecondary">@color/Red</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/Grey</item>
+    </style>
+
+
 </resources>

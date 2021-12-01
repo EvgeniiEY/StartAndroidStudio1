@@ -47,6 +47,7 @@ class PostViewHolder(
             likesNumber.text = post.likes.toString()
             repostsNumber.text = post.share.toString()
             likesButton.isChecked = post.likedByMe
+            likesButton.setIconTintResource(if(post.likedByMe) R.color.Red else R.color.Grey)
             likesNumber.text = Utils.reductionInNumbers(post.likes)
             repostsNumber.text = Utils.reductionInNumbers(post.share)
 
