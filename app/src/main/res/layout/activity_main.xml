@@ -62,7 +62,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="627dp"
         android:background="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/main_list"
+        app:layout_constraintBottom_toTopOf="@+id/saveButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/main_list"
         app:srcCompat="@drawable/ic_baseline_cancel" />

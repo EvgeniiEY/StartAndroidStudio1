@@ -44,12 +44,15 @@ class PostViewHolder(
             author.text = post.author
             content.text = post.content
             published.text = post.published
-            likesNumber.text = post.likes.toString()
-            repostsNumber.text = post.share.toString()
+            likesButton.text = post.likes.toString()
+            repostsButton.text = post.share.toString()
             likesButton.isChecked = post.likedByMe
-            likesButton.setIconTintResource(if(post.likedByMe) R.color.Red else R.color.Grey)
-            likesNumber.text = Utils.reductionInNumbers(post.likes)
-            repostsNumber.text = Utils.reductionInNumbers(post.share)
+
+            likesButton.setIconTintResource(if (post.likedByMe) R.color.Red else R.color.Grey)
+
+            likesButton.text = Utils.reductionInNumbers(post.likes)
+
+            repostsButton.text = Utils.reductionInNumbers(post.share)
 
             likesButton.setOnClickListener {
                 postCallBack.onLike(post)

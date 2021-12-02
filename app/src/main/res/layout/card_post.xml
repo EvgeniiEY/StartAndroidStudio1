@@ -38,8 +38,6 @@
         tools:ignore="UnknownId" />
 
 
-
-
     <TextView
         android:id="@+id/content"
         android:layout_width="match_parent"
@@ -88,7 +86,6 @@
         android:layout_marginEnd="4dp"
         android:background="@color/Grey"
         app:icon="@drawable/ic_baseline_more_vert_24"
-        app:iconTint="@color/Grey"
         app:layout_constraintBottom_toBottomOf="@+id/author"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/author"
@@ -99,15 +96,13 @@
 
         android:id="@id/likesButton"
         style="@style/MyStyleMaterialButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:background="@android:color/transparent"
         android:checkable="true"
-        android:text=""
+        android:text="@string/app_likes_input"
         app:icon="@drawable/ic_liked_24dp"
-        app:iconTint="@color/Grey"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barrier_down" />
 
@@ -116,37 +111,15 @@
 
         android:id="@+id/repostsButton"
         style="@style/MyStyleMaterialButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/transparent"
-        app:icon="@drawable/ic_baseline_share_24"
-        app:iconTint="@color/Grey"
-        app:layout_constraintBottom_toBottomOf="@+id/likesNumber"
-        app:layout_constraintStart_toEndOf="@+id/likesNumber"
-        app:layout_constraintTop_toBottomOf="@+id/barrier_down"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-
-        android:id="@+id/likesNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_likes_input"
+        android:layout_marginTop="16dp"
+        android:text="@string/app_reposts"
+        app:icon="@drawable/ic_baseline_share_24"
         app:layout_constraintBottom_toBottomOf="@+id/likesButton"
         app:layout_constraintStart_toEndOf="@+id/likesButton"
-        app:layout_constraintTop_toTopOf="@+id/likesButton" />
-
-    <TextView
-
-        android:id="@+id/repostsNumber"
-        android:layout_width="34dp"
-        android:layout_height="18dp"
-        android:text="@string/app_reposts"
-        app:layout_constraintBottom_toBottomOf="@+id/repostsButton"
-        app:layout_constraintStart_toEndOf="@+id/repostsButton"
-        app:layout_constraintTop_toTopOf="@+id/repostsButton" />
+        app:layout_constraintTop_toBottomOf="@+id/barrier_down"
+        app:layout_constraintVertical_bias="0.0" />
 
 
     <TextView
