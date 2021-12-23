@@ -8,4 +8,5 @@
     <string name="description_post_like">Нраится!</string>
     <string name="error_empty_content">Контент не может быть пустым</string>
     <string name="menu_edit">Редактировать</string>
+    <string name="share_post">Поделиться</string>
 </resources>
