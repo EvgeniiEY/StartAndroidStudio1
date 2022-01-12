@@ -1,6 +1,10 @@
 package ru.netology.nmedia.activity
 
+import android.content.Intent
+import android.content.Intent.ACTION_SEND
+import android.net.Uri
 import android.os.Bundle
+import android.view.Gravity.apply
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +12,7 @@ import ru.netology.nmedia.R
 
 import ru.netology.nmedia.viewModel.PostViewModel
 import androidx.activity.viewModels
+import androidx.core.view.GravityCompat.apply
 import androidx.core.view.isVisible
 import ru.netology.nmedia.adapter.PostCallBack
 import ru.netology.nmedia.adapter.PostsAdapter
@@ -29,12 +34,21 @@ class MainActivity : AppCompatActivity() {
         val viewModel: PostViewModel by viewModels()
 
         val adapter = PostsAdapter(object : PostCallBack {
+
             override fun onLike(post: Post) {
                 viewModel.likeById(post.id)
             }
 
             override fun onShare(post: Post) {
-                viewModel.shareById(post.id)
+                val intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                        putExtra(Intent.EXTRA_TEXT, post.content)
+                        data = Uri.parse("link to an image")
+                        type = "text/plain"
+                    }
+
+                val chooser = Intent.createChooser(intent, getString(R.string.share_post))
+                startActivity(chooser)
             }
 
             override fun remove(post: Post) {
