@@ -26,6 +26,7 @@ class IntentHandlerActivity : AppCompatActivity() {
                         finish()
                     }
                     .show()
+                return@let
             }
         }
     }

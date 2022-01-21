@@ -4,10 +4,11 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContract
-import ru.netology.nmedia.NewPostActivity
+import ru.netology.nmedia.activity.NewPostActivity
+
 
 class NewPostResultContract : ActivityResultContract<Unit, String?>() {
-    override fun createIntent(context: Context, input: Unit?): Intent =
+    override fun createIntent(context: Context, input: Unit): Intent =
         Intent(context, NewPostActivity::class.java)
 
     override fun parseResult(resultCode: Int, intent: Intent?): String? =
@@ -16,4 +17,8 @@ class NewPostResultContract : ActivityResultContract<Unit, String?>() {
         } else {
             null
         }
+
+
+
 }
+

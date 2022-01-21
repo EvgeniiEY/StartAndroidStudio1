@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.Gravity.apply
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.launch
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.R
 
@@ -32,6 +33,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel: PostViewModel by viewModels()
+        val newPostContract = registerForActivityResult(NewPostContract()) { text ->
+            text?.let {
+                viewModel.changeContent(it)
+                viewModel.save()
+            }
+        }
 
         val adapter = PostsAdapter(object : PostCallBack {
 
@@ -42,10 +49,10 @@ class MainActivity : AppCompatActivity() {
             override fun onShare(post: Post) {
                 val intent = Intent().apply {
                     action = Intent.ACTION_SEND
-                        putExtra(Intent.EXTRA_TEXT, post.content)
-                        data = Uri.parse("link to an image")
-                        type = "text/plain"
-                    }
+                    putExtra(Intent.EXTRA_TEXT, post.content)
+                    data = Uri.parse("link to an image")
+                    type = "text/plain"
+                }
 
                 val chooser = Intent.createChooser(intent, getString(R.string.share_post))
                 startActivity(chooser)
@@ -64,20 +71,24 @@ class MainActivity : AppCompatActivity() {
         binding.mainList.adapter = adapter
         binding.mainList.itemAnimator = null
 
-        viewModel.data.observe(this) { posts ->
+        viewModel.data.observe(this, { posts ->
             adapter.submitList(posts)
+        })
+        binding.add.setOnClickListener() {
+            newPostContract.launch("post body")
         }
 
-        viewModel.edited.observe(this) { post ->
-            if (post.id == 0L) {
-                return@observe
-            }
-            binding.group.isVisible = true
-            binding.contentEditor.setText(post.content)
-            binding.editedTextPart.text = post.content
 
-            binding.contentEditor.requestFocus()
-        }
+//        viewModel.edited.observe(this) { post ->
+//            if (post.id == 0L) {
+//                return@observe
+//            }
+//            binding.group.isVisible = true
+//            binding.contentEditor.setText(post.content)
+//            binding.editedTextPart.text = post.content
+//
+//            binding.contentEditor.requestFocus()
+//        }
         binding.cancelEditButton.setOnClickListener {
             binding.group.visibility = View.INVISIBLE
             binding.contentEditor.setText("")
@@ -87,26 +98,24 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
-        binding.saveButton.setOnClickListener {
-            with(binding.contentEditor) {
-                if (text.isNullOrBlank()) {
-                    Toast.makeText(
-                        this@MainActivity,
-                        R.string.error_empty_content,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    return@setOnClickListener
-                }
-
-                viewModel.changeContent(text.toString())
-                viewModel.save()
-                binding.group.visibility = View.INVISIBLE
-                setText("")
-                clearFocus()
-                Utils.hideKeyboard(it)
-            }
-        }
+//        binding.saveButton.setOnClickListener {
+//            with(binding.contentEditor) {
+//                if (text.isNullOrBlank()) {
+//                    Toast.makeText(
+//                        this@MainActivity,
+//                        R.string.error_empty_content,
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                    return@setOnClickListener
+//                }
+//
+//
+//                binding.group.visibility = View.INVISIBLE
+//                setText("")
+//                clearFocus()
+//                Utils.hideKeyboard(it)
+//            }
+//        }
     }
 }
 

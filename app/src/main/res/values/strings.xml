@@ -6,7 +6,7 @@
     <string name="menu_edit">Edit</string>
     <string name="post_text">Enter post text</string>
     <string name="share_post">Share post</string>
-
+    <string name="save" translatable="false">Save</string>
     <string name="description_post_like">Like</string>
     <string name="error_empty_content">Content cannot be empty</string>
     <string name="app_reposts" translatable="false">1200</string>

@@ -81,10 +81,10 @@ class PostViewHolder(
             }
 
             likesButton.setOnClickListener {
-                PostCallBack.onLike(post)
+                postCallBack.onLike(post)
             }
             repostsButton.setOnClickListener {
-                PostCallBack.onShare(post)
+                postCallBack.onShare(post)
             }
         }
     }
