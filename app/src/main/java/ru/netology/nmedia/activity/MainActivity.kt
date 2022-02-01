@@ -33,7 +33,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel: PostViewModel by viewModels()
+
         val newPostContract = registerForActivityResult(NewPostContract()) { text ->
+            text?.let {
+                viewModel.changeContent(it)
+                viewModel.save()
+            }
+        }
+        val editingPostContract = registerForActivityResult(EditingPostContract()) { text ->
             text?.let {
                 viewModel.changeContent(it)
                 viewModel.save()
@@ -47,6 +54,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onShare(post: Post) {
+                viewModel.shareById(post.id)
                 val intent = Intent().apply {
                     action = Intent.ACTION_SEND
                     putExtra(Intent.EXTRA_TEXT, post.content)
@@ -75,25 +83,26 @@ class MainActivity : AppCompatActivity() {
             adapter.submitList(posts)
         })
         binding.add.setOnClickListener() {
-            newPostContract.launch("post body")
+            newPostContract.launch()
         }
 
 
-//        viewModel.edited.observe(this) { post ->
-//            if (post.id == 0L) {
-//                return@observe
-//            }
+        viewModel.edited.observe(this) { post ->
+            if (post.id == 0L) {
+                return@observe
+            }
+
+            editingPostContract.launch(post.content)
+
 //            binding.group.isVisible = true
 //            binding.contentEditor.setText(post.content)
 //            binding.editedTextPart.text = post.content
 //
 //            binding.contentEditor.requestFocus()
-//        }
+        }
         binding.cancelEditButton.setOnClickListener {
-            binding.group.visibility = View.INVISIBLE
+            binding.group.visibility = View.VISIBLE
             binding.contentEditor.setText("")
-
-
             Utils.hideKeyboard(it)
         }
 

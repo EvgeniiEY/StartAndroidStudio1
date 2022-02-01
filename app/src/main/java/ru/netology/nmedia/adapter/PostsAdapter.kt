@@ -50,6 +50,7 @@ class PostViewHolder(
             likesButton.text = Utils.reductionInNumbers(post.likes)
             repostsButton.text = Utils.reductionInNumbers(post.share)
             likesButton.setOnClickListener {
+
                 postCallBack.onLike(post)
             }
             repostsButton.setOnClickListener {
@@ -78,13 +79,6 @@ class PostViewHolder(
                         }
                     }
                 }.show()
-            }
-
-            likesButton.setOnClickListener {
-                postCallBack.onLike(post)
-            }
-            repostsButton.setOnClickListener {
-                postCallBack.onShare(post)
             }
         }
     }

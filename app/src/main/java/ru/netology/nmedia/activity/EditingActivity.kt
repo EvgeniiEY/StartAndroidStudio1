@@ -18,33 +18,7 @@ class EditingActivity : AppCompatActivity() {
 
 
 
-        fun onShare(post: Post) {
-            val intent = Intent().apply {
-                action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, post.content)
-                type = "text/plain"
-            }
 
-            val shareIntent = Intent.createChooser(intent, getString(R.string.share_post))
-            startActivity(shareIntent)
-
-            intent?.let {
-                if (it.action != Intent.ACTION_SEND) {
-                    return@let
-                }
-
-                val text = it.getStringExtra(Intent.EXTRA_TEXT)
-                if (text.isNullOrBlank()) {
-                    Snackbar.make(binding.root, R.string.error_empty_content, LENGTH_INDEFINITE)
-                        .setAction(android.R.string.ok) {
-                            finish()
-                        }
-                        .show()
-                    return@let
-
-                }
-            }
-        }
     }
 }
 
