@@ -41,4 +41,12 @@
         </activity>
     </application>
 
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.SEND" />
+            <data android:scheme="*" />
+        </intent>
+    </queries>
 </manifest>
+
+
