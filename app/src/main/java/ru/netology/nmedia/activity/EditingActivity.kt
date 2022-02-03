@@ -7,13 +7,16 @@ import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_INDEFI
 import com.google.android.material.snackbar.Snackbar
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.ActivityEditingBinding
+import ru.netology.nmedia.databinding.ActivityIntentHandlerBinding.inflate
+import ru.netology.nmedia.databinding.ActivityNewPostBinding
+import ru.netology.nmedia.databinding.CardPostBinding.inflate
 import ru.netology.nmedia.dto.Post
 
 
 class EditingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityEditingBinding.inflate(layoutInflater)
+        val binding = post(con
         setContentView(binding.root)
         binding.save.setOnClickListener {
             val text = binding.contentEditor.text.toString()

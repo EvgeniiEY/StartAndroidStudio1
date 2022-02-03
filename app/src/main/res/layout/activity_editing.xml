@@ -8,42 +8,58 @@
     android:layout_height="match_parent"
     tools:context=".activity.EditingActivity">
 
-<!--    <EditText-->
-<!--        android:id="@+id/contentEditor"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_gravity="bottom"-->
-<!--        android:background="@android:color/transparent"-->
-<!--        android:gravity="top"-->
-<!--        android:hint="@string/post_text"-->
-<!--        android:importantForAutofill="no"-->
-<!--        android:inputType="textMultiLine"-->
-<!--        android:padding="16dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.0" />-->
+    <EditText
+        android:id="@+id/contentEditor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:background="@android:color/transparent"
+        android:gravity="top"
+        android:hint="@string/post_text"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-<!--    <com.google.android.material.bottomappbar.BottomAppBar-->
-<!--        android:id="@+id/bottomAppBarEdit"-->
-<!--        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="bottom"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/contentEditor"-->
-<!--         />-->
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBarEdit"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:layout_constraintBottom_toBottomOf="@+id/contentEditor"
+        tools:ignore="BottomAppBar" />
 
 
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/saveEdit"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:contentDescription="@string/save"-->
-<!--        app:layout_anchor="@id/bottomAppBarEdit"-->
-<!--        app:srcCompat="@drawable/ic_add_24dp"-->
-<!--        app:useCompatPadding="false"/>-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/saveEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/save"
+        app:layout_anchor="@id/bottomAppBarEdit"
+        app:srcCompat="@drawable/ic_baseline_check_circle_24"
+        app:useCompatPadding="false"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="294dp"
+        tools:layout_editor_absoluteY="640dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/cancel_button"
+        style="@style/Widget.Design.FloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="mini"
+        app:layout_anchor="@id/bottomAppBarEdit"
+        app:layout_anchorGravity="end"
+        app:srcCompat="@drawable/ic_baseline_cancel"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="69dp"
+        tools:layout_editor_absoluteY="648dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
