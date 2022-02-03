@@ -15,7 +15,16 @@ class EditingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityEditingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        binding.save.setOnClickListener {
+            val text = binding.contentEditor.text.toString()
+            if (text.isBlank()) {
+                setResult(RESULT_CANCELED)
+            } else {
+                val intent = Intent().apply { putExtra(Intent.EXTRA_TEXT, text) }
+                setResult(RESULT_OK, intent)
+            }
+            finish()
+        }
 
 
 

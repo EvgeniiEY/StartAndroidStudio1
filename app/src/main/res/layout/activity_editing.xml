@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -6,5 +7,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.EditingActivity">
+
+<!--    <EditText-->
+<!--        android:id="@+id/contentEditor"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_gravity="bottom"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:gravity="top"-->
+<!--        android:hint="@string/post_text"-->
+<!--        android:importantForAutofill="no"-->
+<!--        android:inputType="textMultiLine"-->
+<!--        android:padding="16dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.0" />-->
+
+<!--    <com.google.android.material.bottomappbar.BottomAppBar-->
+<!--        android:id="@+id/bottomAppBarEdit"-->
+<!--        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="bottom"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/contentEditor"-->
+<!--         />-->
+
+
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/saveEdit"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:contentDescription="@string/save"-->
+<!--        app:layout_anchor="@id/bottomAppBarEdit"-->
+<!--        app:srcCompat="@drawable/ic_add_24dp"-->
+<!--        app:useCompatPadding="false"/>-->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
