@@ -16,21 +16,22 @@ import ru.netology.nmedia.dto.Post
 class EditingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = post(con
+        val binding = ActivityEditingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.save.setOnClickListener {
+
+        binding.contentEditor.setText(intent?.getStringExtra(Intent.EXTRA_TEXT))
+
+        binding.saveEdit.setOnClickListener {
             val text = binding.contentEditor.text.toString()
-            if (text.isBlank()) {
-                setResult(RESULT_CANCELED)
-            } else {
-                val intent = Intent().apply { putExtra(Intent.EXTRA_TEXT, text) }
-                setResult(RESULT_OK, intent)
-            }
+            val intent = Intent().apply { putExtra(Intent.EXTRA_TEXT, text) }
+            setResult(RESULT_OK, intent)
+
             finish()
         }
-
-
-
+        binding.cancelButton.setOnClickListener {
+            finish()
+        }
     }
 }
+
 

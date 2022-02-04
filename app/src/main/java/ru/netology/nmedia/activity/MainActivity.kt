@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         val viewModel: PostViewModel by viewModels()
 
         val newPostContract = registerForActivityResult(NewPostContract()) { text ->
@@ -85,6 +86,7 @@ class MainActivity : AppCompatActivity() {
         binding.add.setOnClickListener() {
             newPostContract.launch()
         }
+
 
 
         viewModel.edited.observe(this) { post ->

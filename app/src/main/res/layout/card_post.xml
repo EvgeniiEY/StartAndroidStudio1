@@ -55,14 +55,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="published, author,threeDotButton" />
+        app:constraint_referenced_ids="published, author,threeDotButton"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="77dp" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier_down"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="avatar, author,threeDotButton,content" />
+        app:constraint_referenced_ids="avatar, author,threeDotButton,content"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="285dp" />
 
 
     <ImageView
@@ -143,4 +147,29 @@
         app:layout_constraintBottom_toBottomOf="@+id/avatar"
         app:layout_constraintStart_toStartOf="@+id/author"
         app:layout_constraintTop_toBottomOf="@+id/author" />
+
+    <ImageView
+        android:id="@+id/videoCover"
+        android:layout_width="354dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="59dp"
+        android:gravity="left|center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/content"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <ImageButton
+        android:id="@+id/playVideoButton"
+        android:layout_width="68dp"
+        android:layout_height="52dp"
+        app:layout_constraintBottom_toBottomOf="@+id/videoCover"
+        app:layout_constraintEnd_toEndOf="@+id/videoCover"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/videoCover"
+        app:layout_constraintTop_toTopOf="@+id/videoCover"
+        app:srcCompat="@android:drawable/ic_media_play" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

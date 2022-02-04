@@ -1,5 +1,7 @@
 package ru.netology.nmedia.adapter
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
@@ -17,6 +19,7 @@ interface PostCallBack {
     fun onShare(post: Post)
     fun remove(post: Post)
     fun edit(post: Post)
+    fun playVideo(post: Post)
 }
 
 
@@ -80,9 +83,18 @@ class PostViewHolder(
                     }
                 }.show()
             }
+            playVideoButton.setOnClickListener {
+//                R.id.playVideoButton
+                postCallBack.playVideo(post)
+
+
+            }
+
+            }
+
         }
     }
-}
+
 
 class PostsDiffCallBack : DiffUtil.ItemCallback<Post>() {
 
