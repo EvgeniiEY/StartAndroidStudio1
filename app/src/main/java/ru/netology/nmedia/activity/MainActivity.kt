@@ -22,6 +22,7 @@ import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.utils.Utils
 import java.security.acl.Group
+import android.content.Context as Context1
 
 
 class MainActivity : AppCompatActivity() {
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity() {
                 viewModel.save()
             }
         }
+
 
         val adapter = PostsAdapter(object : PostCallBack {
 
@@ -76,37 +78,61 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-        })
-        binding.mainList.adapter = adapter
-        binding.mainList.itemAnimator = null
+            override fun playVideo(post: Post) {
+                if (post.video.isNullOrBlank()) {
+                    Toast.makeText(
+                        applicationContext,
+                        "Нечего проигрывать!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    return
+                }
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
+            val videoIntent =
+                Intent.createChooser(intent, getString(R.string.chooser_video_player))
+            startActivity(videoIntent)
 
-        viewModel.data.observe(this, { posts ->
-            adapter.submitList(posts)
-        })
-        binding.add.setOnClickListener() {
-            newPostContract.launch()
+
+
         }
 
+    })
+    binding.mainList.adapter = adapter
+    binding.mainList.itemAnimator = null
+
+    viewModel.data .observe(this,
+    {
+        posts ->
+        adapter.submitList(posts)
+    })
+    binding.add.setOnClickListener()
+    {
+        newPostContract.launch()
+    }
 
 
-        viewModel.edited.observe(this) { post ->
-            if (post.id == 0L) {
-                return@observe
-            }
 
-            editingPostContract.launch(post.content)
+    viewModel.edited.observe(this)
+    {
+        post ->
+        if (post.id == 0L) {
+            return@observe
+        }
+
+        editingPostContract.launch(post.content)
 
 //            binding.group.isVisible = true
 //            binding.contentEditor.setText(post.content)
 //            binding.editedTextPart.text = post.content
 //
 //            binding.contentEditor.requestFocus()
-        }
-        binding.cancelEditButton.setOnClickListener {
-            binding.group.visibility = View.VISIBLE
-            binding.contentEditor.setText("")
-            Utils.hideKeyboard(it)
-        }
+    }
+    binding.cancelEditButton.setOnClickListener {
+
+        binding.group.visibility = View.VISIBLE
+        binding.contentEditor.setText("")
+        Utils.hideKeyboard(it)
+    }
 
 
 //        binding.saveButton.setOnClickListener {
@@ -127,7 +153,7 @@ class MainActivity : AppCompatActivity() {
 //                Utils.hideKeyboard(it)
 //            }
 //        }
-    }
+}
 }
 
 

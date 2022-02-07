@@ -75,6 +75,10 @@ class PostRepositoryInMemoryImpl : PostRepository {
 
     }
 
+    override fun playVideo(id: Long) {
+        data.value = posts
+    }
+
 
 }
 
