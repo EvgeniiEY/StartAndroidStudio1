@@ -127,12 +127,12 @@ class MainActivity : AppCompatActivity() {
 //
 //            binding.contentEditor.requestFocus()
     }
-    binding.cancelEditButton.setOnClickListener {
-
-        binding.group.visibility = View.VISIBLE
-        binding.contentEditor.setText("")
-        Utils.hideKeyboard(it)
-    }
+//    binding.cancelEditButton.setOnClickListener {
+//
+//        binding.group.visibility = View.VISIBLE
+//        binding.contentEditor.setText("")
+//        Utils.hideKeyboard(it)
+//    }
 
 
 //        binding.saveButton.setOnClickListener {
