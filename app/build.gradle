@@ -38,6 +38,7 @@ dependencies {
 
     def lifecycle_version = "2.4.0-alpha03"
     def recyclerview_version = "1.2.1"
+    implementation 'com.google.code.gson:gson:2.8.5'
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.5.0"
     implementation 'androidx.core:core-ktx:1.7.0'
