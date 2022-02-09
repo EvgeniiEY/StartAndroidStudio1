@@ -21,6 +21,7 @@ class PostRepositorySharedPrefsImpl(val context: Context) : PostRepository {
     init {
         prefs.getString(key, null)?.let {
             posts = gson.fromJson(it, type)
+            nextId = posts.maxOfOrNull { post -> post.id }?.inc() ?: 1L
             data.value = posts
         }
     }
@@ -51,7 +52,7 @@ class PostRepositorySharedPrefsImpl(val context: Context) : PostRepository {
     }
 
     override fun playVideo(id: Long) {
-        TODO("Not yet implemented")
+        data.value = posts
     }
 
     override fun likeById(id: Long) {
@@ -66,7 +67,10 @@ class PostRepositorySharedPrefsImpl(val context: Context) : PostRepository {
     }
 
     override fun shareById(id: Long) {
-        TODO("Not yet implemented")
+        posts = posts.map {
+            if (it.id != id) it else it.copy(share = it.share + 1)
+        }
+        data.value = posts
     }
 
     override fun removeById(id: Long) {
