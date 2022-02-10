@@ -55,9 +55,7 @@ class PostRepositoryFileImpl(val context: Context) : PostRepository {
         sync()
     }
 
-    override fun playVideo(id: Long) {
-        TODO("Not yet implemented")
-    }
+
 
     override fun likeById(id: Long) {
         posts = posts.map {

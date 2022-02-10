@@ -51,9 +51,7 @@ class PostRepositorySharedPrefsImpl(val context: Context) : PostRepository {
         sync()
     }
 
-    override fun playVideo(id: Long) {
-        data.value = posts
-    }
+
 
     override fun likeById(id: Long) {
         posts = posts.map {
