@@ -3,20 +3,13 @@ package ru.netology.nmedia.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_INDEFINITE
-import com.google.android.material.snackbar.Snackbar
-import ru.netology.nmedia.R
-import ru.netology.nmedia.databinding.ActivityEditingBinding
-import ru.netology.nmedia.databinding.ActivityIntentHandlerBinding.inflate
-import ru.netology.nmedia.databinding.ActivityNewPostBinding
-import ru.netology.nmedia.databinding.CardPostBinding.inflate
-import ru.netology.nmedia.dto.Post
+import ru.netology.nmedia.databinding.FragmentEditPostBinding
 
 
 class EditingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityEditingBinding.inflate(layoutInflater)
+        val binding = FragmentEditPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.contentEditor.setText(intent?.getStringExtra(Intent.EXTRA_TEXT))

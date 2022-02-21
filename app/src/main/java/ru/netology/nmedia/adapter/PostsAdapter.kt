@@ -65,15 +65,18 @@ class PostViewHolder(
 
                     setOnMenuItemClickListener { menuItem ->
                         when (menuItem.itemId) {
+
                             R.id.post_remove -> {
                                 postCallBack.remove(post)
 
                                 true
 
-
                             }
                             R.id.post_edit -> {
                                 postCallBack.edit(post)
+//                                bundle.putString("content", post.content)
+
+
                                 true
 
 
@@ -87,13 +90,10 @@ class PostViewHolder(
 //                R.id.playVideoButton
                 postCallBack.playVideo(post)
 
-
             }
-
-            }
-
         }
     }
+}
 
 
 class PostsDiffCallBack : DiffUtil.ItemCallback<Post>() {
