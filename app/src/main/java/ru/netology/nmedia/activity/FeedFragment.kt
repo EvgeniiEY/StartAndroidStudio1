@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.R
+import ru.netology.nmedia.activity.EditPostFragment.Companion.edit
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.FragmentFeedBinding
 import ru.netology.nmedia.dto.Post
@@ -54,9 +55,6 @@ class FeedFragment : Fragment() {
 
             override fun edit(post: Post) {
                 viewModel.edit(post)
-                viewModel.changeContent(content = String())
-                findNavController().navigate(R.id.action_feedFragment_to_editingActivity)
-
 
             }
 
@@ -95,14 +93,12 @@ class FeedFragment : Fragment() {
 
 
 
-        viewModel.edited.observe(this) {
-
-                post ->
+        viewModel.edited.observe(this) { post ->
             if (post.id == 0L) {
                 return@observe
             }
 
-//            findNavController().navigate(R.id.action_feedFragment_to_editingActivity)
+            findNavController().navigate(R.id.action_feedFragment_to_editPostFragment, Bundle().apply { edit = post.content })
         }
 
 

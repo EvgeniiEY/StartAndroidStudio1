@@ -33,10 +33,10 @@ class EditPostFragment : Fragment() {
         val binding = FragmentEditPostBinding.inflate(inflater, container, false)
 
         arguments?.edit?.let(binding.contentEditor::setText)
-        binding.contentEditor.setText(arguments?.getString("editedText"))
+//        binding.contentEditor.setText(arguments?.getString("editedText"))
 
 
-        binding.saveEdit.setOnClickListener{
+        binding.saveEdit.setOnClickListener {
             if (binding.contentEditor.text.isNullOrBlank()) {
                 Toast.makeText(
                     activity,
@@ -52,8 +52,9 @@ class EditPostFragment : Fragment() {
             }
         }
 
-        binding.cancelButton.setOnClickListener{
+        binding.cancelButton.setOnClickListener {
             Utils.hideKeyboard(requireView())
+            viewModel.cancel()
             findNavController().navigateUp()
         }
         return binding.root
