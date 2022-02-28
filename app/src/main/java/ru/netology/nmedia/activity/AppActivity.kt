@@ -16,6 +16,9 @@ class AppActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityAppBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+//        findNavController(R.id.navigation).navigate(R.id.action_feedFragment_to_editPostFragment)
+
         intent?.let {
             if (it.action != Intent.ACTION_SEND) {
                 return@let
@@ -31,7 +34,8 @@ class AppActivity : AppCompatActivity() {
                 return@let
             }
 
-            findNavController(R.id.navigation).navigate(R.id.action_feedFragment_to_newPostFragment,
+            findNavController(R.id.navigation).navigate(
+                R.id.action_feedFragment_to_newPostFragment,
                 Bundle().apply {
                     textArg = text
                 }

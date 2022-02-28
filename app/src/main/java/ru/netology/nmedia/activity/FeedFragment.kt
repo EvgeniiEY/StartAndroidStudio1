@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.launch
 import ru.netology.nmedia.adapter.PostCallBack
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -93,12 +92,13 @@ class FeedFragment : Fragment() {
 
 
 
-        viewModel.edited.observe(this) { post ->
+        viewModel.edited.observe(viewLifecycleOwner) { post ->
             if (post.id == 0L) {
                 return@observe
             }
 
-            findNavController().navigate(R.id.action_feedFragment_to_editPostFragment, Bundle().apply { edit = post.content })
+            findNavController().navigate(R.id.action_feedFragment_to_editPostFragment, Bundle().apply
+            { edit = post.content })
         }
 
 
