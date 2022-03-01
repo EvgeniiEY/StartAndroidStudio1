@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.FragmentEditPostBinding
-
 import ru.netology.nmedia.utils.StringArg
 import ru.netology.nmedia.utils.Utils
 import ru.netology.nmedia.viewModel.PostViewModel

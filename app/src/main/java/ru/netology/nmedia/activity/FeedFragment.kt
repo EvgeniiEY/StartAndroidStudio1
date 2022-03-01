@@ -75,6 +75,8 @@ class FeedFragment : Fragment() {
 
             }
 
+
+
         })
         binding.mainList.adapter = adapter
         binding.mainList.itemAnimator = null
@@ -89,6 +91,17 @@ class FeedFragment : Fragment() {
             findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
 
         }
+
+        binding.mainList.setOnClickListener() { post ->
+
+
+            findNavController().navigate(R.id.action_feedFragment_to_postFragment, Bundle().apply
+            { edit = post.content  })
+
+
+        }
+
+
 
 
 
