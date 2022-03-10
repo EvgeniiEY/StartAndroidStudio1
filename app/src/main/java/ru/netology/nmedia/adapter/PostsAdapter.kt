@@ -5,6 +5,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,7 @@ interface PostCallBack {
     fun remove(post: Post)
     fun edit(post: Post)
     fun playVideo(post: Post)
+    fun onCLick(post: Post)
 }
 
 
@@ -86,6 +88,13 @@ class PostViewHolder(
                     }
                 }.show()
             }
+
+            content.setOnClickListener {
+              postCallBack.onCLick(post)
+            }
+
+
+
             playVideoButton.setOnClickListener {
 //                R.id.playVideoButton
                 postCallBack.playVideo(post)

@@ -10,9 +10,11 @@ import android.widget.Toast
 import ru.netology.nmedia.adapter.PostCallBack
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.R
 import ru.netology.nmedia.activity.EditPostFragment.Companion.edit
+import ru.netology.nmedia.activity.PostFragment.Companion.longArg
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.FragmentFeedBinding
 import ru.netology.nmedia.dto.Post
@@ -71,19 +73,21 @@ class FeedFragment : Fragment() {
                     Intent.createChooser(intent, getString(R.string.chooser_video_player))
                 startActivity(videoIntent)
 
-
-
             }
 
+            override fun onCLick(post: Post) {
+
+                findNavController().navigate(R.id.action_feedFragment_to_postFragment, Bundle().apply { longArg = post.id})
+            }
 
 
         })
         binding.mainList.adapter = adapter
         binding.mainList.itemAnimator = null
 
-        viewModel.data.observe(viewLifecycleOwner) {  posts ->
-                adapter.submitList(posts)
-            }
+        viewModel.data.observe(viewLifecycleOwner) { posts ->
+            adapter.submitList(posts)
+        }
 
 
         binding.add.setOnClickListener() {
@@ -92,14 +96,8 @@ class FeedFragment : Fragment() {
 
         }
 
-        binding.mainList.setOnClickListener() { post ->
 
 
-            findNavController().navigate(R.id.action_feedFragment_to_postFragment, Bundle().apply
-            { edit = post.content  })
-
-
-        }
 
 
 
@@ -110,8 +108,8 @@ class FeedFragment : Fragment() {
                 return@observe
             }
 
-            findNavController().navigate(R.id.action_feedFragment_to_editPostFragment, Bundle().apply
-            { edit = post.content })
+            findNavController().navigate(R.id.action_feedFragment_to_editPostFragment,
+                Bundle().apply { edit = post.content })
         }
 
 
