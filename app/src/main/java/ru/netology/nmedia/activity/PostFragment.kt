@@ -69,7 +69,6 @@ class PostFragment : Fragment() {
                     startActivity(chooser)
 
 
-
                 }
                 threeDotButton.setOnClickListener {
                     PopupMenu(it.context, it).apply {
@@ -124,7 +123,7 @@ class PostFragment : Fragment() {
 
 
             }
-            viewModel.edited.observe(viewLifecycleOwner) edited@ { editingPost ->
+            viewModel.edited.observe(viewLifecycleOwner) edited@{ editingPost ->
                 if (editingPost.id == 0L) {
                     return@edited
                 }
@@ -132,8 +131,6 @@ class PostFragment : Fragment() {
                 findNavController().navigate(R.id.action_postFragment_to_editPostFragment,
                     Bundle().apply { edit = editingPost.content })
             }
-
-
 
 
         }

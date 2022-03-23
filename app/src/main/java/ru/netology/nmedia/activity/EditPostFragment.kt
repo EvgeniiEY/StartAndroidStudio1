@@ -32,7 +32,6 @@ class EditPostFragment : Fragment() {
         val binding = FragmentEditPostBinding.inflate(inflater, container, false)
 
         arguments?.edit?.let(binding.contentEditor::setText)
-//        binding.contentEditor.setText(arguments?.getString("editedText"))
 
 
         binding.saveEdit.setOnClickListener {

@@ -1,17 +1,18 @@
 package ru.netology.nmedia.adapter
 
-import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import androidx.navigation.Navigation.findNavController
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.R
+import ru.netology.nmedia.dao.PostDao
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
+import ru.netology.nmedia.repository.PostRepository
 import ru.netology.nmedia.utils.Utils
 
 
@@ -23,6 +24,8 @@ interface PostCallBack {
     fun playVideo(post: Post)
     fun onCLick(post: Post)
 }
+
+
 
 
 class PostsAdapter(private val postCallBack: PostCallBack) :
@@ -76,7 +79,6 @@ class PostViewHolder(
                             }
                             R.id.post_edit -> {
                                 postCallBack.edit(post)
-//                                bundle.putString("content", post.content)
 
 
                                 true
@@ -90,13 +92,12 @@ class PostViewHolder(
             }
 
             content.setOnClickListener {
-              postCallBack.onCLick(post)
+                postCallBack.onCLick(post)
             }
 
 
 
             playVideoButton.setOnClickListener {
-//                R.id.playVideoButton
                 postCallBack.playVideo(post)
 
             }
@@ -117,3 +118,52 @@ class PostsDiffCallBack : DiffUtil.ItemCallback<Post>() {
 
 
 }
+
+
+
+class PostRepositorySQLiteImpl(
+    private val dao: PostDao
+) : PostRepository {
+    private var posts = emptyList<Post>()
+    private val data = MutableLiveData(posts)
+
+    init {
+        posts = dao.getAll()
+        data.value = posts
+    }
+
+    override fun getAll(): LiveData<List<Post>> = data
+
+    override fun likeById(id: Long) {
+        TODO("Not yet implemented")
+    }
+
+    override fun shareById(id: Long) {
+        TODO("Not yet implemented")
+    }
+
+    override fun removeById(id: Long) {
+        TODO("Not yet implemented")
+    }
+
+    override fun save(post: Post) {
+        val id = post.id
+        val saved = dao.save(post)
+        posts = if (id == 0L) {
+            listOf(saved) + posts
+        } else {
+
+            posts.map {
+                if (it.id != id) it else saved
+            }
+        }
+        data.value = posts
+    }
+}
+
+
+
+
+
+
+
