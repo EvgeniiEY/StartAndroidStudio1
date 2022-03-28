@@ -14,11 +14,11 @@ class PostDaoImpl(private val db: SQLiteDatabase) : PostDao {
             ${PostColumns.COLUMN_CONTENT} TEXT NOT NULL,
             ${PostColumns.COLUMN_PUBLISHED} TEXT NOT NULL,
             ${PostColumns.COLUMN_LIKED_BY_ME} BOOLEAN NOT NULL DEFAULT 0,
-            ${PostColumns.COLUMN_LIKES} INTEGER NOT NULL DEFAULT 0
-            ${PostColumns.COLUMN_AUTHORAVATAR} TEXT NOT NULL,
-            ${PostColumns.COLUMN_SHARE} TEXT NOT NULL,
-            ${PostColumns.COLUMN_VIEWS} TEXT NOT NULL,
-            ${PostColumns.COLUMN_VIDEO} TEXT NOT NULL,
+            ${PostColumns.COLUMN_LIKES} INTEGER NOT NULL DEFAULT 0,
+            ${PostColumns.COLUMN_AUTHORAVATAR} TEXT NOT NULL DEFAULT "",
+            ${PostColumns.COLUMN_SHARE} TEXT NOT NULL DEFAULT "",
+            ${PostColumns.COLUMN_VIEWS} TEXT NOT NULL DEFAULT "",
+            ${PostColumns.COLUMN_VIDEO} TEXT NOT NULL DEFAULT ""
             );
             """.trimIndent()
 
@@ -26,6 +26,7 @@ class PostDaoImpl(private val db: SQLiteDatabase) : PostDao {
 
     object PostColumns {
         const val TABLE = "posts"
+
         const val COLUMN_ID = "id"
         const val COLUMN_AUTHOR = "author"
         const val COLUMN_CONTENT = "content"
@@ -62,7 +63,7 @@ class PostDaoImpl(private val db: SQLiteDatabase) : PostDao {
             null,
             null,
             "${PostColumns.COLUMN_ID} DESC"
-        )?.use {
+        ).use {
             while (it.moveToNext()) {
                 posts.add(map(it))
             }
@@ -72,14 +73,22 @@ class PostDaoImpl(private val db: SQLiteDatabase) : PostDao {
 
     override fun save(post: Post): Post {
         val values = ContentValues().apply {
-            if (post.id != 0L) {
-                put(PostColumns.COLUMN_ID, post.id)
-            }
+
             put(PostColumns.COLUMN_AUTHOR, "Me")
             put(PostColumns.COLUMN_CONTENT, post.content)
             put(PostColumns.COLUMN_PUBLISHED, "now")
         }
-        val id = db.replace(PostColumns.TABLE, null, values)
+        val id = if (post.id != 0L) {
+            db.update(
+                PostColumns.TABLE,
+                values,
+                "${PostColumns.COLUMN_ID} = ?",
+            arrayOf(post.id.toString()),
+            )
+            post.id
+        }else{
+            db.insert(PostColumns.TABLE, null, values)
+        }
         db.query(
             PostColumns.TABLE,
             PostColumns.ALL_COLUMNS,
@@ -94,6 +103,19 @@ class PostDaoImpl(private val db: SQLiteDatabase) : PostDao {
         }
     }
 
+    override fun shareById(id: Long) {
+        db.execSQL(
+            """
+                UPDATE posts SET
+                share = share + CASE WHEN shareByMe THEN -1 ELSE 1 END,
+                shareByMe = CASE WHEN shareByMe THEN 0 ELSE 1 END
+                WHERE id = ?;
+            """.trimIndent(), arrayOf(id)
+        )
+
+
+    }
+
     override fun likeById(id: Long) {
         db.execSQL(
             """
@@ -103,6 +125,7 @@ class PostDaoImpl(private val db: SQLiteDatabase) : PostDao {
                 WHERE id = ?;
                 """.trimIndent(), arrayOf(id)
         )
+
     }
 
     override fun removeById(id: Long) {

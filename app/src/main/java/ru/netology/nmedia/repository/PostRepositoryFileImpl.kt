@@ -69,7 +69,10 @@ class PostRepositoryFileImpl(val context: Context) : PostRepository {
     }
 
     override fun shareById(id: Long) {
-        TODO("Not yet implemented")
+        posts = posts.map {
+            if (it.id != id) it else it.copy(share = it.share + 1)
+        }
+        data.value = posts
     }
 
     override fun removeById(id: Long) {

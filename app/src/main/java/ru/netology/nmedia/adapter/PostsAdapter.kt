@@ -26,8 +26,6 @@ interface PostCallBack {
 }
 
 
-
-
 class PostsAdapter(private val postCallBack: PostCallBack) :
     ListAdapter<Post, PostViewHolder>(PostsDiffCallBack()) {
 
@@ -120,7 +118,6 @@ class PostsDiffCallBack : DiffUtil.ItemCallback<Post>() {
 }
 
 
-
 class PostRepositorySQLiteImpl(
     private val dao: PostDao
 ) : PostRepository {
@@ -135,15 +132,26 @@ class PostRepositorySQLiteImpl(
     override fun getAll(): LiveData<List<Post>> = data
 
     override fun likeById(id: Long) {
-        TODO("Not yet implemented")
+        posts = posts.map {
+            if (it.id != id) it else it.copy(
+                likedByMe = !it.likedByMe,
+                likes = if (it.likedByMe) it.likes - 1 else it.likes + 1
+            )
+        }
+        data.value = posts
     }
 
     override fun shareById(id: Long) {
-        TODO("Not yet implemented")
+        posts = posts.map {
+            if (it.id != id) it else it.copy(share = it.share + 1)
+        }
+        data.value = posts
     }
 
     override fun removeById(id: Long) {
-        TODO("Not yet implemented")
+        dao.removeById(id)
+        posts = posts.filter { it.id != id }
+        data.value = posts
     }
 
     override fun save(post: Post) {
