@@ -83,10 +83,10 @@ class PostDaoImpl(private val db: SQLiteDatabase) : PostDao {
                 PostColumns.TABLE,
                 values,
                 "${PostColumns.COLUMN_ID} = ?",
-            arrayOf(post.id.toString()),
+                arrayOf(post.id.toString()),
             )
             post.id
-        }else{
+        } else {
             db.insert(PostColumns.TABLE, null, values)
         }
         db.query(
@@ -107,9 +107,8 @@ class PostDaoImpl(private val db: SQLiteDatabase) : PostDao {
         db.execSQL(
             """
                 UPDATE posts SET
-                share = share + CASE WHEN shareByMe THEN -1 ELSE 1 END,
-                shareByMe = CASE WHEN shareByMe THEN 0 ELSE 1 END
-                WHERE id = ?;
+                share = share + 1
+                 WHERE id = ?;
             """.trimIndent(), arrayOf(id)
         )
 
