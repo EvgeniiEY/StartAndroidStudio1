@@ -10,8 +10,10 @@ import android.widget.Toast
 import ru.netology.nmedia.adapter.PostCallBack
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.distinctUntilChanged
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import ru.netology.nmedia.R
 import ru.netology.nmedia.activity.EditPostFragment.Companion.edit
 import ru.netology.nmedia.activity.PostFragment.Companion.longArg
@@ -87,6 +89,10 @@ class FeedFragment : Fragment() {
 
         viewModel.data.observe(viewLifecycleOwner) { posts ->
             adapter.submitList(posts)
+        }
+
+        viewModel.getPostById(2).distinctUntilChanged().observe(viewLifecycleOwner) {
+            Snackbar.make(binding.root, it.toString(), Snackbar.LENGTH_LONG).show()
         }
 
 

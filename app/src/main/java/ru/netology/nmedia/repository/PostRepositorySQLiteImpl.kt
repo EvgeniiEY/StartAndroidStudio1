@@ -12,8 +12,8 @@ class PostRepositorySQLiteImpl(
     private val data = MutableLiveData(posts)
 
     init {
-        posts = dao.getAll()
-        data.value = posts
+//        posts = dao.getAll()
+//        data.value = posts
     }
 
     override fun getAll(): LiveData<List<Post>> = data
@@ -30,10 +30,12 @@ class PostRepositorySQLiteImpl(
     }
 
     override fun shareById(id: Long) {
+        dao.shareById(id)
         posts = posts.map {
             if (it.id != id) it else it.copy(share = it.share + 1)
         }
         data.value = posts
+
     }
 
     override fun removeById(id: Long) {
@@ -44,17 +46,21 @@ class PostRepositorySQLiteImpl(
 
     override fun save(post: Post) {
         val id = post.id
-        val saved = dao.save(post)
-        posts = if (id == 0L) {
-            listOf(saved) + posts
-        } else {
-            posts.map {
-                if (it.id != id) it else saved
-            }
-        }
+//        val saved = dao.save(post)
+//        posts = if (id == 0L) {
+//            listOf(saved) + posts
+//        } else {
+//            posts.map {
+//                if (it.id != id) it else saved
+//            }
+//        }
         data.value = posts
+    }
+
+    override fun getPostById(id: Long): LiveData<Post> {
+        TODO("Not yet implemented")
     }
 
 }
 
-//у вас из репозитория не вызывается функция dao для репоста. поэтому в БД точно меняться не будет.
+

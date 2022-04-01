@@ -51,6 +51,9 @@ class PostRepositorySharedPrefsImpl(val context: Context) : PostRepository {
         sync()
     }
 
+    override fun getPostById(id: Long): LiveData<Post> {
+        TODO("Not yet implemented")
+    }
 
 
     override fun likeById(id: Long) {
