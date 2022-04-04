@@ -91,9 +91,7 @@ class FeedFragment : Fragment() {
             adapter.submitList(posts)
         }
 
-        viewModel.getPostById(2).distinctUntilChanged().observe(viewLifecycleOwner) {
-            Snackbar.make(binding.root, it.toString(), Snackbar.LENGTH_LONG).show()
-        }
+
 
 
         binding.add.setOnClickListener() {
