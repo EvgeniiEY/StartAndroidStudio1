@@ -1,9 +1,8 @@
-
-
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -36,6 +35,9 @@ android {
     }
 }
 
+
+//com.google.firebase:firebase-messaging-ktx
+
 dependencies {
 
     def fragment_version = "1.3.1"
@@ -47,6 +49,11 @@ dependencies {
     def gson_version = "2.8.9"
     def nav_version = "2.3.5"
     def room_version = "2.3.0"
+    def play_services_base_version = "17.6.0"
+
+    implementation "com.google.android.gms:play-services-base: $play_services_base_version"
+    implementation platform('com.google.firebase:firebase-bom:26.7.0')
+    implementation "com.google.firebase:firebase-messaging-ktx"
 
     implementation 'com.google.code.gson:gson:2.8.9'
     implementation fileTree(dir: "libs", include: ["*.jar"])
