@@ -1,6 +1,5 @@
 package ru.netology.nmedia.service
 
-import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -42,24 +41,6 @@ class FCMService : FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-//        println(Gson().toJson(remoteMessage))
-
-        remoteMessage.data[action]?.let {
-            when (it) {
-                likeChannelId -> handleLike(
-                    gson.fromJson(
-                        remoteMessage.data[content],
-                        Like::class.java
-                    )
-                )
-                newPostChannelId -> handlerNewPost(
-                    gson.fromJson(
-                        remoteMessage.data[content],
-                        NewPost::class.java
-                    )
-                )
-            }
-        }
 
         try {
             remoteMessage.data["action"]?.let {
@@ -95,7 +76,7 @@ class FCMService : FirebaseMessagingService() {
     }
 
     private fun handlerNewPost(content: NewPost) {
-        val notification = NotificationCompat.Builder(this, newPostChannelId)
+        var notification = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(
                 getString(
@@ -104,10 +85,12 @@ class FCMService : FirebaseMessagingService() {
                 )
             )
             .setContentText(content.postContent)
+
             .setStyle(
                 NotificationCompat.BigTextStyle()
                     .bigText(content.postContent)
                     .setSummaryText(content.postContent)
+
             )
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .build()
@@ -155,3 +138,14 @@ data class NewPost(
     val postId: Long,
     val postContent: String
 )
+
+
+
+
+
+
+
+
+
+
+
